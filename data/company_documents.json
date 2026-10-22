@@ -34,5 +34,41 @@
       "department": "hr",
       "type": "procedure"
     }
+  },
+  {
+    "id": "sales_002",
+    "title": "Política de descuentos",
+    "content": "Los descuentos superiores al 15 % requieren aprobación del gerente comercial. Los descuentos de hasta 15 % pueden ser autorizados por el ejecutivo de cuenta.",
+    "metadata": {
+      "department": "sales",
+      "type": "policy"
+    }
+  },
+  {
+    "id": "support_001",
+    "title": "Horario de soporte",
+    "content": "El equipo de soporte atiende solicitudes de lunes a viernes entre las 8:00 y las 18:00, hora de Colombia. Los incidentes críticos tienen prioridad.",
+    "metadata": {
+      "department": "support",
+      "type": "procedure"
+    }
+  },
+  {
+    "id": "security_001",
+    "title": "Rotación de contraseñas",
+    "content": "Las contraseñas corporativas deben tener al menos 12 caracteres y cambiarse cada 90 días. No se permite reutilizar las últimas cinco contraseñas.",
+    "metadata": {
+      "department": "security",
+      "type": "policy"
+    }
+  },
+  {
+    "id": "finance_002",
+    "title": "Cierre contable",
+    "content": "El cierre contable mensual se realiza el tercer día hábil del mes siguiente. Cada área debe enviar sus soportes al equipo financiero antes del mediodía.",
+    "metadata": {
+      "department": "finance",
+      "type": "procedure"
+    }
   }
 ]
