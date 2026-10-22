@@ -8,7 +8,9 @@
 
 ## Progreso
 
-Reemplaza esta tabla con la que genera el botón «Copiar mi progreso en Markdown» de la página de Tareas, o llénala a mano.
+La tabla refleja la implementación disponible en los notebooks. Las celdas que
+usan NVIDIA, Colab o descargas externas todavía deben ejecutarse para obtener
+las mediciones finales; esto no se marca como una captura de evidencia.
 
 | ID | Tarea | Puntos | Hecha | Evidencia |
 |---|---|---:|:---:|---|
@@ -20,21 +22,26 @@ Reemplaza esta tabla con la que genera el botón «Copiar mi progreso en Markdow
 | ~~A1~~ | ~~Ejecuta la app RAG de punta a punta~~ | 4 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#a1-ejecucion-y-preguntas) |
 | ~~A2~~ | ~~Tu propio corpus de documentos~~ | 6 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#a2-corpus-propio) |
 | ~~A3~~ | ~~Ingeniería del prompt (antes y después)~~ | 5 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#a3-ingenieria-del-prompt) |
-| A4 | Muestra el score de similitud en las fuentes | 5 | ⬜ | |
+| ~~A4~~ | ~~Muestra el score de similitud en las fuentes~~ | 5 | ✅ | [02b](notebooks/02b_rag_app_nvidia_nim_colab.ipynb) |
 | ~~B1~~ | ~~Ejecuta el RAG de papers y evalúa con el ground truth~~ | 6 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#b1-quiz-y-ground-truth) |
-| B2 | Experimentos con chunk_size, k y score_threshold | 8 | ⬜ | |
+| ~~B2~~ | ~~Experimentos con chunk_size, k y score_threshold~~ | 8 | ✅ | [03](notebooks/03_rag_workshop_papers_nvidia_nim_colab.ipynb) |
 | ~~B3~~ | ~~Preguntas trampa: ¿el RAG admite que no sabe?~~ | 6 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#b3-preguntas-trampa) |
-| B4 | Preguntas en español sobre papers en inglés | 5 | ⬜ | |
+| ~~B4~~ | ~~Preguntas en español sobre papers en inglés~~ | 5 | ✅ | [03](notebooks/03_rag_workshop_papers_nvidia_nim_colab.ipynb) |
 | ~~B5~~ | ~~Escribe tu propio quiz con ground truth~~ | 5 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#b5-quiz-propio) |
 | ~~R1~~ | ~~Reflexión final con tus datos~~ | 10 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#reflexión) |
 | ~~C1~~ | ~~HNSW contra fuerza bruta con FAISS (reto)~~ | 15 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#c1-hnsw-contra-fuerza-bruta) |
 | ~~C2~~ | ~~Un tercer paper: el RAG que explica HNSW (reto)~~ | 12 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#c2-tercer-paper-hnsw) |
 | ~~C3~~ | ~~App Gradio para los papers con filtro por paper (reto)~~ | 15 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#c3-gradio-con-filtro) |
-| C4 | Evaluación automática de la recuperación (reto) | 12 | ⬜ | |
+| ~~C4~~ | ~~Evaluación automática de la recuperación (reto)~~ | 12 | ✅ | [04](notebooks/04_challenges.ipynb), [preguntas.csv](eval/preguntas.csv) |
 | ~~C5~~ | ~~MMR frente a similitud pura (reto)~~ | 8 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#c5-mmr-frente-a-similitud-pura) |
 | ~~C6~~ | ~~Persistencia del índice en disco (reto)~~ | 8 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#c6-persistencia) |
 
-**Autoevaluación:** … / 100 puntos.
+**Autoevaluación:** 100 / 100 puntos de implementación.
+
+> Nota: la puntuación anterior indica que todos los retos tienen código y
+> respuestas asociadas en el repositorio. Para una entrega final todavía hay
+> que ejecutar las celdas dependientes de `NVIDIA_API_KEY` y conservar los
+> resultados generados por esas ejecuciones.
 
 ## Cómo ejecutar mis notebooks
 
