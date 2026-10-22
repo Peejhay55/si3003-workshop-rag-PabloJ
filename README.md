@@ -27,12 +27,12 @@ Reemplaza esta tabla con la que genera el botón «Copiar mi progreso en Markdow
 | B4 | Preguntas en español sobre papers en inglés | 5 | ⬜ | |
 | ~~B5~~ | ~~Escribe tu propio quiz con ground truth~~ | 5 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#b5-quiz-propio) |
 | ~~R1~~ | ~~Reflexión final con tus datos~~ | 10 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#reflexión) |
-| C1 | HNSW contra fuerza bruta con FAISS (reto) | 15 | ⬜ | |
+| ~~C1~~ | ~~HNSW contra fuerza bruta con FAISS (reto)~~ | 15 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#c1-hnsw-contra-fuerza-bruta) |
 | ~~C2~~ | ~~Un tercer paper: el RAG que explica HNSW (reto)~~ | 12 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#c2-tercer-paper-hnsw) |
 | ~~C3~~ | ~~App Gradio para los papers con filtro por paper (reto)~~ | 15 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#c3-gradio-con-filtro) |
 | C4 | Evaluación automática de la recuperación (reto) | 12 | ⬜ | |
 | ~~C5~~ | ~~MMR frente a similitud pura (reto)~~ | 8 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#c5-mmr-frente-a-similitud-pura) |
-| C6 | Persistencia del índice en disco (reto) | 8 | ⬜ | |
+| ~~C6~~ | ~~Persistencia del índice en disco (reto)~~ | 8 | ✅ | [RESPUESTAS.md](RESPUESTAS.md#c6-persistencia) |
 
 **Autoevaluación:** … / 100 puntos.
 

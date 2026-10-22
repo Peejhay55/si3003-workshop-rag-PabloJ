@@ -1,3 +1,11 @@
 id,pregunta,fuente_esperada,palabra_clave,respuesta_esperada
-1,How many attention heads does the base Transformer use?,attention_paper.pdf,8,h = 8 heads con dk = dv = 64
-2,What are the two RAG model variants?,rag_paper.pdf,RAG-Token,RAG-Sequence y RAG-Token
+1,How many attention heads does the base Transformer use?,attention_paper.pdf,8,h = 8 heads
+2,What are the two RAG model variants?,rag_paper.pdf,RAG-Token,RAG-Sequence and RAG-Token
+3,What BLEU score did the Transformer big model achieve?,attention_paper.pdf,28.4,28.4 BLEU
+4,Why scale dot product attention by sqrt(dk)?,attention_paper.pdf,softmax,softmax gradients
+5,What generator does RAG use?,rag_paper.pdf,BART-large,BART-large
+6,What does RAG combine?,rag_paper.pdf,parametric,parametric and non-parametric memory
+7,What are the key and value dimensions per base head?,attention_paper.pdf,64,dk = dv = 64
+8,How does RAG-Sequence differ from RAG-Token?,rag_paper.pdf,document,one document versus document per token
+9,What architecture is BART based on?,rag_paper.pdf,Transformer,seq2seq Transformer
+10,What does multi-head attention do?,attention_paper.pdf,subspaces,different representation subspaces

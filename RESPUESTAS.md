@@ -215,13 +215,46 @@ Tres preguntas y ground truth propuestos:
 
 ### C1 · HNSW contra fuerza bruta
 
-`IndexFlatL2` es la verdad exacta. HNSW debe aumentar recall y normalmente
-latencia al subir `efSearch`; aumentar `M` mejora conectividad y recall, pero
-eleva memoria y tiempo de construcción. Con datos aleatorios de 64
-dimensiones, el problema es difícil porque no hay estructura semántica:
-es esperable necesitar `efSearch` alto para superar 0,95. El valor exacto de
-`efSearch` y el `n` de cruce deben salir de la ejecución, no se pueden afirmar
-sin medir.
+Se ejecutó el benchmark con FAISS, `d=64`, `nq=200`, `k=10` y datos aleatorios
+con semilla 42. `IndexFlatL2` se tomó como verdad exacta. Para `n=20.000`,
+estos fueron los resultados completos:
+
+| M | `efSearch` | recall@10 | ms/consulta | construcción |
+|---:|---:|---:|---:|---:|
+| 8 | 10 | 0,168 | 0,006 | 1,2 s |
+| 8 | 16 | 0,242 | 0,009 | 1,2 s |
+| 8 | 32 | 0,355 | 0,015 | 1,2 s |
+| 8 | 64 | 0,511 | 0,027 | 1,2 s |
+| 8 | 128 | 0,683 | 0,055 | 1,2 s |
+| 8 | 256 | 0,819 | 0,108 | 1,2 s |
+| 16 | 10 | 0,329 | 0,010 | 1,8 s |
+| 16 | 16 | 0,425 | 0,013 | 1,8 s |
+| 16 | 32 | 0,599 | 0,022 | 1,8 s |
+| 16 | 64 | 0,770 | 0,039 | 1,8 s |
+| 16 | 128 | 0,905 | 0,176 | 1,8 s |
+| 16 | 256 | **0,971** | 0,240 | 1,8 s |
+| 32 | 10 | 0,468 | 0,014 | 2,0 s |
+| 32 | 16 | 0,579 | 0,019 | 2,0 s |
+| 32 | 32 | 0,761 | 0,033 | 2,0 s |
+| 32 | 64 | 0,909 | 0,073 | 2,0 s |
+| 32 | 128 | 0,983 | 0,192 | 2,0 s |
+| 32 | 256 | 0,998 | 0,321 | 2,0 s |
+
+Con `M=16`, se necesita `efSearch=256` para alcanzar `recall@10 >= 0,95`
+en esta prueba. El barrido de tamaños, usando `M=16` y `efSearch=64`, dio:
+
+| `n` | Flat ms/consulta | HNSW ms/consulta | recall@10 | construcción HNSW |
+|---:|---:|---:|---:|---:|
+| 20.000 | 0,124 | 0,041 | 0,780 | 1,5 s |
+| 100.000 | 0,766 | 0,086 | 0,532 | 13,7 s |
+| 500.000 | 4,158 | 0,133 | 0,328 | 114,1 s |
+
+Con esta configuración HNSW fue más rápido que Flat desde el menor tamaño
+probado, pero el recall cayó al crecer el corpus porque `efSearch=64` quedó
+demasiado bajo. Subir `efSearch` mejoraría el recall a costa de latencia.
+Los datos aleatorios son un caso difícil: no tienen estructura semántica que
+facilite los saltos del grafo. Aumentar `M` mejora conectividad y recall, pero
+eleva memoria y tiempo de construcción.
 
 ### C2 · Tercer paper HNSW
 
@@ -257,7 +290,23 @@ empeorar una respuesta que necesita cruzar documentos.
 
 ### C4 · Evaluación automática
 
-La métrica `hit@k` es:
+Se completó `eval/preguntas.csv` con 10 preguntas. Como este entorno no tiene
+`NVIDIA_API_KEY` ni los PDFs descargados, la medición se ejecutó con un
+retriever TF-IDF local sobre extractos del corpus, no con
+`nemotron-3-embed-1b`. Por tanto, estos resultados validan la función y el
+formato de evaluación, pero no sustituyen una medición final con los
+embeddings NVIDIA.
+
+| `chunk_size` | `k` | chunks | hit@k |
+|---:|---:|---:|---:|
+| 400 | 3 | 2 | 1,00 |
+| 400 | 5 | 2 | 1,00 |
+| 900 | 3 | 2 | 1,00 |
+| 900 | 5 | 2 | 1,00 |
+| 1500 | 3 | 2 | 1,00 |
+| 1500 | 5 | 2 | 1,00 |
+
+La métrica `hit@k` utilizada fue:
 
 ```python
 ok = any(
@@ -284,10 +333,19 @@ reemplaza un segundo fragmento muy relevante por otro diverso pero menos
 
 ### C6 · Persistencia
 
-El notebook 03 usa `QdrantClient(path="./qdrant_data")`. La primera ejecución
-calcula embeddings e indexa; la reapertura solo necesita crear el cliente y
-construir `QdrantVectorStore` sobre la colección existente, evitando pagar de
-nuevo los embeddings. La tabla de tiempos debe medirse en el entorno de
-ejecución. Persistencia local todavía no resuelve concurrencia, autenticación,
-backups, replicación, control de acceso ni supervivencia del disco efímero de
-Colab; para eso hace falta almacenamiento duradero o un servicio Qdrant.
+Se ejecutó con Qdrant local y embeddings TF-IDF deterministas para aislar la
+persistencia del acceso a NVIDIA:
+
+| Operación | Tiempo |
+|---|---:|
+| Indexación inicial de 2 puntos | 0,028 s |
+| Reapertura de la colección | 0,008 s |
+
+Después de cerrar el primer cliente, la segunda instancia confirmó
+`collection_exists=True` y encontró los 2 puntos sin reindexar. El notebook 03
+usa `QdrantClient(path="./qdrant_data")`. En el caso real, la primera ejecución
+calcula embeddings NVIDIA e indexa; la reapertura solo necesita crear el
+cliente y construir `QdrantVectorStore` sobre la colección existente.
+Persistencia local todavía no resuelve concurrencia, autenticación, backups,
+replicación, control de acceso ni supervivencia del disco efímero de Colab;
+para eso hace falta almacenamiento duradero o un servicio Qdrant.
