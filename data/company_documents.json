@@ -1,0 +1,38 @@
+[
+  {
+    "id": "product_001",
+    "title": "CloudSync Pro — Precios",
+    "content": "El plan Enterprise cuesta $49/mes por usuario con compromiso anual. El plan mensual sin compromiso cuesta $59/mes por usuario.",
+    "metadata": {
+      "department": "sales",
+      "type": "pricing"
+    }
+  },
+  {
+    "id": "hr_001",
+    "title": "Política de trabajo remoto",
+    "content": "Los empleados pueden trabajar de forma remota hasta 3 días por semana, con aprobación del jefe directo.",
+    "metadata": {
+      "department": "hr",
+      "type": "policy"
+    }
+  },
+  {
+    "id": "finance_001",
+    "title": "Política de reembolsos",
+    "content": "Los reembolsos mayores a $100 requieren aprobación del supervisor. Una vez aprobados, se procesan en 3 a 5 días hábiles al método de pago original.",
+    "metadata": {
+      "department": "finance",
+      "type": "policy"
+    }
+  },
+  {
+    "id": "hr_002",
+    "title": "Onboarding",
+    "content": "Durante la primera semana se completan módulos obligatorios de seguridad, cumplimiento y cultura de la empresa.",
+    "metadata": {
+      "department": "hr",
+      "type": "procedure"
+    }
+  }
+]
