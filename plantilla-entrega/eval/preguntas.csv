@@ -1,0 +1,3 @@
+id,pregunta,fuente_esperada,palabra_clave,respuesta_esperada
+1,How many attention heads does the base Transformer use?,attention_paper.pdf,8,h = 8 heads con dk = dv = 64
+2,What are the two RAG model variants?,rag_paper.pdf,RAG-Token,RAG-Sequence y RAG-Token

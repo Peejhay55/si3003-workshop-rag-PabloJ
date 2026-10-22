@@ -1,0 +1,20 @@
+[
+  {
+    "id": "ventas_001",
+    "title": "Política de descuentos",
+    "content": "Los descuentos superiores al 15 % requieren aprobación del gerente comercial. Los descuentos de hasta 15 % pueden aprobarlos los ejecutivos de cuenta.",
+    "metadata": {
+      "department": "ventas",
+      "type": "policy"
+    }
+  },
+  {
+    "id": "soporte_001",
+    "title": "Tiempos de respuesta de soporte",
+    "content": "Los tickets críticos se responden en menos de 2 horas. Los tickets normales se responden en un máximo de 24 horas hábiles.",
+    "metadata": {
+      "department": "soporte",
+      "type": "sla"
+    }
+  }
+]
